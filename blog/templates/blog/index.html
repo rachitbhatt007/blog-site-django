@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Homepage
+{% endblock%}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/css/index.css' %} ">
+<link rel="stylesheet" href="{% static 'blog/css/includes/header.css' %}">
+{% endblock css_files %}
+
+
+{% block content %}
+{% include './includes/header.html' %}
+
+<section id="latest_blogs">
+
+<h1 id="latest">Latest Blogs</h1>
+{% comment %}--------------------- carousel--------------------------------------------------- {% endcomment %}
+
+<div id="carouselDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+  {% for post in posts%}
+  {% if forloop.counter == 1%}
+
+    <a href="{% url 'individual_post' post.slug %}" class="carousel-item active" data-bs-interval="10000">
+     
+      <img src="{{post.image.url}}" class="d-block w-100" alt="{{post.image.url}}">
+      <div class="carousel-caption d-none d-md-block post-detail">
+        <h3>{{post.title}}</h3>
+        <h4>{{post.excerpt}}</h4>
+        <h4>-{{post.author}}</h4>
+      </div>
+    </a>
+    
+    
+    {%elif forloop.counter <= 3%}
+    
+    <a href="{% url 'individual_post' post.slug %}" class="carousel-item" data-bs-interval="2000">
+   
+      <img src="{{post.image.url}}" class="d-block w-100" alt="{{post.image}}">
+      <div class="carousel-caption d-none d-md-block post-detail">
+        <h3>{{post.title}}</h3>
+        <h4>{{post.excerpt}}</h4>
+        <h4>-{{post.author}}</h4>
+
+        
+      </div>
+    </a>
+
+    {% endif %}
+    {% endfor %}
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% comment %}============= corousel end================ {% endcomment %}
+</section>
+
+<h1> WELCOME TO MYBLOGS </h1>
+
+<section id="welcome" class="container">
+<header>
+    <img src="{% static 'blog/images/main.jpg' %}" alt="some_image">  
+</header>
+<div>
+<h2>MyBlogs</h2>
+<p>Hello Everyone I welcome you to my blogs website here i blog about different things like sports,finance,health and tech.Hope You guys like my posts. &#10084;&#65039; &#10084;&#65039;</p>
+</div>
+</section >
+</br>
+<hr>
+
+<section>
+
+<h2>What i do</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, ipsum facilis. Vitae doloribus qui exercitationem quis laudantium fugit quisquam molestiae, amet quibusdam labore voluptatibus facere dolores iure soluta, blanditiis expedita.
+</p>
+</section>
+
+<hr>
+
+
+
+
+{% endblock %} 

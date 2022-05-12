@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/css/includes/header.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/includes/cards.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/favourites.css' %}">
+{% endblock css_files %}
+
+
+{% block title %}
+My Favourites
+{% endblock title %}
+
+{% block content %}
+{% include './includes/header.html' %}
+
+<h1>Favourites</h1>
+<div id = card-display>
+{% for post in posts %}
+
+<a href="{% url 'individual_post' post.slug %}" class="card" style="width: 15rem;">
+      <div class="our-post">
+        <div class="picture">
+          <img class="img-fluid" src={{post.image.url}}>
+        </div>
+        <div class="post-content">
+          <h3 class="name">{{post.title}}</h3>
+          <h4 class="title">{{post.excerpt}}</h4>
+        </div>
+        
+      </div>
+   </a> 
+{% endfor %}
+
+</div>
+{% endblock content %}

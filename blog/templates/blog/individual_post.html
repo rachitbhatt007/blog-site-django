@@ -1,0 +1,65 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block title %} 
+{{post.title}} 
+
+{%endblock%}
+
+ {% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/css/post.css' %} " />
+<link rel="stylesheet" href="{% static 'blog/css/includes/header.css' %}" />
+{% endblock css_files %} 
+{% block content %} 
+{% include './includes/header.html'%}
+<form action="{% url 'favourites' %}" method="post">
+	{% csrf_token %}
+	<div class="row">
+        <div>
+		<input type="hidden" value="{{post.id}}" name="favpost" />
+        {% if favourite %}
+        <button class="fav">Remove from Favourite</button>
+        {% else %}
+		<button class="fav">Add To Favourite</button>
+        {% endif %}
+        </div>
+		<h1>{{post.title}}</h1>
+	</div>
+</form>
+
+<p>by <a href="mailto:{{post.author.email}}">{{post.author}}</a></p>
+<p>Last updated:{{post.date}}</p>
+
+<hr />
+<div class="row">
+	{% for tag in tags %}
+	<p class="col-1">#{{tag}}</p>
+	{% endfor %}
+</div>
+<img src="{{post.image.url}}" alt="{{post.image}}" />
+<div class="container">
+	<p>{{post.content|linebreaks}}</p>
+</div>
+
+<div class="container row">
+	<div class="col">
+		<form action="{% url 'individual_post' post.slug %}" method="post">
+			{% csrf_token %} {% for field in form %}
+			<div class="label">{{field.label_tag}}</div>
+			<div class="form-control my-3">{{field}}</div>
+			{% endfor %}
+			<button class="btn btn-primary my-3">Post Comment</button>
+		</form>
+	</div>
+	<div class="col" id="comment-section">
+    <h3>Comments</h3>
+		{% for comment in comments %}
+		<div class="comment">
+			<h5 class="comment-user"><a href="mailto:{{comment.email}}">{{comment.username}}</h5></a>
+			<p class="comment-content">{{comment.text}}</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% endblock %}

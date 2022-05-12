@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+All posts
+{% endblock%}
+
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/css/all_post.css' %} ">
+<link rel="stylesheet" href="{% static 'blog/css/includes/header.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/includes/cards.css' %}">
+
+{% endblock css_files %}
+
+{% block content %}
+{% include './includes/header.html' %}
+<h1> All posts </h1>
+
+{% comment %} cards {% endcomment %}
+<section id="all_blogs">
+
+{% for post in posts%}
+
+<a href="{% url 'individual_post' post.slug %}" class="card" style="width: 15rem;">
+      <div class="our-post">
+        <div class="picture">
+          <img class="img-fluid" src={{post.image.url}}>
+        </div>
+        <div class="post-content">
+          <h3 class="name">{{post.title}}</h3>
+          <h4 class="title">{{post.excerpt}}</h4>
+        </div>
+        
+      </div>
+   </a> 
+{% endfor %}
+
+</section>
+
+
+
+
+{% endblock %} 

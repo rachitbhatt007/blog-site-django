@@ -1,0 +1,14 @@
+*.pyc
+*.idea/
+../*
+*.xml
+*.log
+.idea/
+__pycache__
+venv
+config
+logs
+config/
+*.env
+sender.py
+config/config.py

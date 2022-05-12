@@ -1,0 +1,65 @@
+h1,h2,p{
+    color:rgb(165, 19, 19);;
+    text-align: center;
+    margin: 30px;
+}
+
+
+#welcome{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+latest_blogs>img{
+    width:300px;
+    height: 500px;
+    
+}
+
+.post-detail{
+    color: rgb(165, 19, 19);;
+    display: inline;
+    border:1px solid rgb(165, 19, 19);;
+    border-radius: 8px;
+}
+
+.post-detail>h3,h4{
+    color: rgb(165, 19, 19);;
+}
+
+#carouselDark{
+    width: 2000px;
+    height: 550px;
+    
+}
+
+.carousel-item>img{
+    width: 1000px;
+    height:550px
+}
+
+
+#latest_blogs{
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+hr{
+    color: white;
+}
+
+#latest{
+    color: rgb(165, 19, 19);;
+    border:1px solid rgb(165, 19, 19);;
+    border-radius: 8px;
+    display: inline-block;
+    position:absolute;
+    z-index: 1;
+    top: 20;
+    left: 0;
+    margin-top: 60px;
+    
+}

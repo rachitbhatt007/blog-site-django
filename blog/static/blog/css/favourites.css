@@ -1,0 +1,10 @@
+#card-display{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+h1{
+    margin:50px;
+    color:rgb(165, 19, 19);
+    text-align:center;
+}
